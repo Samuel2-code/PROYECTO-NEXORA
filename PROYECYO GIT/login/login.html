@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Nexora</title>
+  <link rel="stylesheet" href="/login/stylelogin.css">
+</head>
+<body>
+
+  <div class="login-page">
+
+    <!-- Panel decorativo (solo visual) -->
+    <section class="hero" aria-hidden="true">
+      <div class="hero-content">
+        <span class="eyebrow">Viajes con propósito</span>
+        <h2>Tu próxima aventura comienza aquí</h2>
+        <p>Descubre destinos, organiza cada detalle y viaja con total tranquilidad.</p>
+      </div>
+    </section>
+
+    <!-- Tarjeta de inicio de sesión -->
+    <main class="login-card">
+      <div class="card-inner">
+
+        <!-- Logo de la marca -->
+        <div class="brand">
+          <img src="/img/icon1.png" alt="Nexora - Planifica tu viaje">
+        </div>
+
+        <h1 class="title">Bienvenido de nuevo</h1>
+        <p class="subtitle">Inicia sesión para continuar planificando tu viaje</p>
+
+        <!-- Formulario (solo visual: no envía datos a ningún servidor) -->
+        <form class="login-form" action="#" method="post">
+
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="tucorreo@ejemplo.com"
+              autocomplete="email"
+              >
+          </div>
+
+          <div class="field">
+            <label for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Tu contraseña"
+              autocomplete="current-password"
+              >
+          </div>
+
+          <div class="options">
+            <label class="checkbox-label">
+              <input type="checkbox" name="remember">
+              <span>Recordarme</span>
+            </label>
+            <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+          </div>
+          
+          <button type="button" class="btn-primary" onclick="window.location.href='/inicio/inicio.html'">Iniciar sesión</button>
+          <!-- <a href="/inicio/inicio.html" class="link"><button type="submit" class="btn-primary">Iniciar sesión</button></a> -->
+        </form>
+
+        <div class="divider"><span>o</span></div>
+
+        <p class="register">
+          ¿No tienes una cuenta?
+          <a href="#" class="link">Regístrate</a>
+        </p>
+
+        <p class="about-link">
+          ¿Quieres conocernos mejor?
+          <a href="nosotros.html" class="link">Conoce Nexora →</a>
+        </p>
+
+      </div>
+    </main>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,743 @@
+/* ==========================================================================
+   1. VARIABLES: paleta y tipografía del documento de diseño
+   ========================================================================== */
+:root {
+  --coral: #FF5A4E;
+  --coral-dark: #E8473B;
+  --teal: #0F8B8D;
+  --dorado: #FFB238;
+  --navy: #1B2340;
+  --papel: #FFF8F0;
+  --blanco: #FFFFFF;
+  --linea: #EDE3D6;
+  --muted: #5A6178;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --radius-card: 18px;
+  --shadow-soft: 0 8px 24px rgba(27, 35, 64, 0.07);
+  --shadow-lg: 0 20px 48px rgba(27, 35, 64, 0.18);
+}
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--navy);
+  background: var(--papel);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 2.95rem); }
+h2 { font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.6rem); }
+
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.req {
+  color: var(--coral);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   3. BOTONES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(15, 139, 141, 0.45);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--coral);
+  color: var(--blanco);
+  box-shadow: 0 8px 18px rgba(255, 90, 78, 0.28);
+}
+
+.btn-primary:hover {
+  background: var(--coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 90, 78, 0.36);
+}
+
+.btn-outline {
+  background: var(--blanco);
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--blanco);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--navy);
+  opacity: 0.8;
+}
+
+.btn-ghost:hover {
+  opacity: 1;
+  color: var(--teal);
+}
+
+.btn-sm {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  padding: 0.95rem 2.2rem;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   4. NAVBAR
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 248, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linea);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 74px;
+}
+
+.logo img {
+  height: 44px;
+  width: auto;
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-main a {
+  position: relative;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--navy);
+  transition: color 0.2s ease;
+}
+
+.nav-main a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-main a:hover,
+.nav-main a.active {
+  color: var(--teal);
+}
+
+.nav-main a:hover::after,
+.nav-main a.active::after {
+  transform: scaleX(1);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mobile-menu {
+  display: none;
+  position: relative;
+}
+
+.mobile-menu summary {
+  list-style: none;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--blanco);
+}
+
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu nav {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.6rem);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 240px;
+  padding: 0.6rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.mobile-menu nav a {
+  padding: 0.7rem 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  border-radius: 10px;
+}
+
+.mobile-menu nav a:hover,
+.mobile-menu nav a.active {
+  background: var(--papel);
+  color: var(--teal);
+}
+
+/* ==========================================================================
+   5. ENCABEZADO
+   ========================================================================== */
+.page-head {
+  padding: 3.25rem 0 2rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(15, 139, 141, 0.1);
+  border-radius: 999px;
+}
+
+.page-head h1 {
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  max-width: 56ch;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   6. LAYOUT: formulario + columna de ayuda
+   ========================================================================== */
+.section {
+  padding: 0 0 4.5rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ==========================================================================
+   7. TARJETA DEL FORMULARIO Y PASOS
+   ========================================================================== */
+.form-card {
+  padding: 2.25rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Cada paso es un bloque separado por una línea */
+.step {
+  min-width: 0;
+  padding: 0 0 1.75rem;
+  margin-bottom: 1.75rem;
+  border: none;
+  border-bottom: 1px dashed var(--linea);
+}
+
+.step:last-of-type {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* El legend hace de encabezado del paso */
+.step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  padding: 0;
+}
+
+.step-head strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.step-head small {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Número del paso en círculo */
+.step-num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--blanco);
+  background: var(--coral);
+  border-radius: 50%;
+  box-shadow: 0 6px 14px rgba(255, 90, 78, 0.3);
+}
+
+/* ==========================================================================
+   8. CAMPOS
+   ========================================================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.field {
+  margin-bottom: 1.1rem;
+}
+
+.field label,
+.label-text {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.field label small,
+.label-text small {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--navy);
+  background: var(--papel);
+  border: 1.5px solid var(--linea);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.input::placeholder {
+  color: #A3A9BA;
+}
+
+.input:hover {
+  border-color: #D8CDBE;
+}
+
+.input:focus {
+  outline: none;
+  background: var(--blanco);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(15, 139, 141, 0.15);
+}
+
+/* Inválido: solo se marca después de que el usuario interactuó */
+.input:user-invalid {
+  border-color: var(--coral);
+}
+
+textarea.input {
+  resize: vertical;
+  min-height: 90px;
+}
+
+select.input {
+  cursor: pointer;
+}
+
+/* Mensaje de error breve debajo del campo, visible solo si aplica */
+.field-error {
+  display: none;
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--coral);
+}
+
+.input:user-invalid ~ .field-error {
+  display: block;
+}
+
+/* ==========================================================================
+   9. CHIPS DE INTERESES (casillas ocultas + etiquetas)
+   ========================================================================== */
+.chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.chip-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip {
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--blanco);
+  border: 1.5px solid var(--linea);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.chip:hover {
+  border-color: var(--navy);
+  transform: translateY(-1px);
+}
+
+/* Chip seleccionado */
+.chip-input:checked + .chip {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--blanco);
+}
+
+.chip-input:focus-visible + .chip {
+  outline: 3px solid rgba(15, 139, 141, 0.45);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   10. ACCIONES DEL FORMULARIO
+   ========================================================================== */
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linea);
+}
+
+/* ==========================================================================
+   11. COLUMNA DE AYUDA
+   ========================================================================== */
+.help {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.help-card {
+  padding: 1.75rem;
+  background: var(--navy);
+  color: var(--blanco);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.help-card h2 {
+  margin-bottom: 1.25rem;
+  color: var(--blanco);
+  font-size: 1.2rem;
+}
+
+.help-steps {
+  display: grid;
+  gap: 1.1rem;
+  list-style: none;
+}
+
+.help-steps li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+}
+
+.help-steps strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--blanco);
+}
+
+.help-steps p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.help-num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--navy);
+  border-radius: 50%;
+}
+
+.ic-coral { background: var(--coral); color: var(--blanco); }
+.ic-teal  { background: var(--teal); color: var(--blanco); }
+.ic-gold  { background: var(--dorado); }
+
+.tip-card {
+  padding: 1.25rem 1.4rem;
+  background: rgba(255, 178, 56, 0.14);
+  border: 1px solid rgba(255, 178, 56, 0.45);
+  border-radius: 18px;
+  font-size: 0.9rem;
+  color: var(--navy);
+}
+
+.tip-card strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.tip-card p {
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   12. FOOTER
+   ========================================================================== */
+.footer {
+  padding: 3.5rem 0 0;
+  background: var(--blanco);
+  border-top: 1px solid var(--linea);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  max-width: 30ch;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.footer h4 {
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li + li {
+  margin-top: 0.55rem;
+}
+
+.footer ul a {
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.footer ul a:hover {
+  color: var(--teal);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--linea);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   13. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 960px) {
+  .nav-main,
+  .nav-actions {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* En tablet y celular, la ayuda pasa debajo del formulario */
+  .help {
+    position: static;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .nav-inner {
+    height: 66px;
+  }
+
+  .logo img {
+    height: 36px;
+  }
+
+  .page-head {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .form-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: 20px;
+  }
+
+  /* En celular, un campo por fila para que sea más fácil de llenar */
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .step-head small {
+    font-size: 0.85rem;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,374 @@
+/* ==========================================================================
+   1. VARIABLES (colores tomados del logo de Nexora)
+   ========================================================================== */
+:root {
+  --navy: #1b2340;
+  --navy-2: #2b3d6e;
+  --teal: #178a8c;
+  --teal-light: #5cc8c9;
+  --coral: #ef4a3c;
+  --sky-bg: #f3f8fb;
+  --white: #ffffff;
+  --text: #1b2340;
+  --muted: #64718a;
+  --border: #dbe5ef;
+  --shadow: 0 18px 40px rgba(27, 35, 64, 0.12);
+}
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+  background: var(--sky-bg);
+  min-height: 100vh;
+  overflow-x: hidden;               /* Evita desplazamiento horizontal */
+  -webkit-font-smoothing: antialiased;
+}
+
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   3. PANEL DECORATIVO (HERO)
+   ========================================================================== */
+.hero {
+  flex: 1.1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(2rem, 5vw, 4rem);
+  color: var(--white);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(92, 200, 201, 0.35), transparent 40%),
+    linear-gradient(160deg, var(--navy-2) 0%, var(--navy) 100%);
+  /* Para usar una foto real, reemplaza el background anterior por:
+     background: url("img/destino.jpg") center / cover no-repeat; */
+}
+
+/* Degradado oscuro para dar legibilidad al texto */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(27, 35, 64, 0.9) 10%, rgba(27, 35, 64, 0.3) 70%);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 520px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 1rem;
+}
+
+.hero h2 {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.12;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  opacity: 0.88;
+}
+
+/* ==========================================================================
+   4. TARJETA DE LOGIN
+   ========================================================================== */
+.login-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: var(--white);
+}
+
+.card-inner {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Logo: se muestra completo, sin deformarse */
+.brand {
+  margin-bottom: 2.25rem;
+}
+
+.brand img {
+  display: block;
+  height: 64px;
+  width: auto;
+}
+
+.title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   5. CAMPOS DEL FORMULARIO
+   ========================================================================== */
+.field {
+  margin-bottom: 1.25rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.45rem;
+}
+
+/* 1rem evita que iOS haga zoom al enfocar el campo */
+.field input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #f8fafc;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.field input::placeholder {
+  color: #a5b0c2;
+}
+
+.field input:hover {
+  border-color: #b9c9da;
+}
+
+/* Foco: borde verde azulado y halo suave */
+.field input:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px rgba(23, 138, 140, 0.18);
+}
+
+/* Error: solo aparece cuando el usuario ya interactuó con el campo */
+.field input:user-invalid {
+  border-color: var(--coral);
+}
+
+.field input:user-invalid:focus {
+  box-shadow: 0 0 0 4px rgba(239, 74, 60, 0.15);
+}
+
+/* Fila de "Recordarme" y "¿Olvidaste tu contraseña?" */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.92rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. BOTONES, ENLACES Y ELEMENTOS AUXILIARES
+   ========================================================================== */
+.btn-primary {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--white);
+  background: linear-gradient(90deg, var(--navy-2), var(--teal));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(23, 138, 140, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+/* Hover: el botón se eleva y brilla un poco más */
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(23, 138, 140, 0.38);
+  filter: brightness(1.06);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--teal-light);
+  outline-offset: 3px;
+}
+
+.link {
+  color: var(--teal);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--navy);
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--teal-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.75rem 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.register,
+.about-link {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.register {
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   7. RESPONSIVE
+   ========================================================================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 2rem;
+  }
+}
+
+/* Celulares y tablets pequeñas: el panel decorativo pasa arriba */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .hero {
+    flex: none;
+    min-height: 190px;
+    padding: 1.75rem 1.5rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-content p {
+    display: none;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.5rem;
+  }
+
+  /* La tarjeta se superpone al panel con esquinas redondeadas */
+  .login-card {
+    flex: none;
+    padding: 2rem 1.25rem 2.5rem;
+    margin-top: -24px;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -8px 24px rgba(27, 35, 64, 0.1);
+  }
+
+  .brand {
+    display: flex;
+    justify-content: center;
+  }
+
+  .title,
+  .subtitle {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Celulares pequeños */
+@media (max-width: 380px) {
+  .login-card {
+    padding: 1.75rem 1rem 2rem;
+  }
+
+  .options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Respeta a quien prefiere menos animaciones */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

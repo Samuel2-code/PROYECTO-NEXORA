@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <title>Favoritos | Nexora</title>
+
+  <!-- Tipografías del documento -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="favoritos.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="/img/NEXORA.png" class="logo">
+        <img src="/img/icon1.png" alt="Nexora - Planifica tu viaje">
+      </a>
+
+      <nav class="nav-main" aria-label="Navegación principal">
+        <a href="/inicio/inicio.html">Inicio</a>
+        <a href="/inicio/explorar.html">Explorar destinos</a>
+        <a href="/inicio/favoritos.html" class="active">Favoritos</a>
+        <a href="/inicio/itinerario.html">Itinerario</a>
+        <a href="/inicio/formulario.html">Formulario de Planificación</a>
+        
+      </nav>
+
+      <div class="nav-actions">
+        <a href="/login/login.html" class="btn btn-outline btn-sm">Iniciar sesión</a>
+        <a href="#" class="btn btn-primary btn-sm">Crear itinerario</a>
+      </div>
+
+      <!-- Menú móvil (sin JavaScript) -->
+      <details class="mobile-menu">
+        <summary>Menú</summary>
+        <nav aria-label="Menú móvil">
+          <a href="/inicio/inicio.html">Inicio</a>
+          <a href="/inicio/explorar.html">Explorar destinos</a>
+          <a href="/inicio/favoritos.html" class="active">Favoritos</a>
+          <a href="#">Itinerario</a>
+          <a href="#">Formulario de Planificación</a>
+        
+          <a href="/login/login.html">Iniciar sesión</a>
+        </nav>
+      </details>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==================== ENCABEZADO Y RESUMEN ==================== -->
+    <section class="page-head">
+      <div class="container head-grid">
+
+        <div>
+          <span class="eyebrow">Tu lista</span>
+          <h1>Mis favoritos</h1>
+          <p class="lead">Los destinos que guardaste para tu próximo viaje, en un solo lugar.</p>
+        </div>
+
+        <!-- Resumen rápido -->
+        <div class="stats" aria-label="Resumen de favoritos">
+          <div class="stat">
+            <strong>4</strong>
+            <span>Destinos guardados</span>
+          </div>
+          <div class="stat">
+            <strong>3</strong>
+            <span>Regiones</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== LISTA DE FAVORITOS ==================== -->
+    <section class="section">
+      <div class="container">
+
+        <div class="dest-grid">
+
+          <article class="fav-card" style="--stripe: var(--coral);">
+            <div class="fav-top">
+              <span class="fav-flag" aria-hidden="true">🇨🇴</span>
+              <button class="heart" type="button" aria-label="Quitar Colombia de favoritos">♥</button>
+            </div>
+            <div class="fav-body">
+              <h3>Colombia</h3>
+              <p class="fav-meta">Bogotá · América</p>
+              <div class="fav-actions">
+                <a href="../explorar/explorar.html" class="dest-link">Ver detalle →</a>
+                <button class="btn btn-ghost btn-xs" type="button">Quitar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="fav-card" style="--stripe: var(--teal);">
+            <div class="fav-top">
+              <span class="fav-flag" aria-hidden="true">🇯🇵</span>
+              <button class="heart" type="button" aria-label="Quitar Japón de favoritos">♥</button>
+            </div>
+            <div class="fav-body">
+              <h3>Japón</h3>
+              <p class="fav-meta">Tokio · Asia</p>
+              <div class="fav-actions">
+                <a href="../explorar/explorar.html" class="dest-link">Ver detalle →</a>
+                <button class="btn btn-ghost btn-xs" type="button">Quitar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="fav-card" style="--stripe: var(--dorado);">
+            <div class="fav-top">
+              <span class="fav-flag" aria-hidden="true">🇮🇹</span>
+              <button class="heart" type="button" aria-label="Quitar Italia de favoritos">♥</button>
+            </div>
+            <div class="fav-body">
+              <h3>Italia</h3>
+              <p class="fav-meta">Roma · Europa</p>
+              <div class="fav-actions">
+                <a href="../explorar/explorar.html" class="dest-link">Ver detalle →</a>
+                <button class="btn btn-ghost btn-xs" type="button">Quitar</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="fav-card" style="--stripe: var(--navy);">
+            <div class="fav-top">
+              <span class="fav-flag" aria-hidden="true">🇲🇦</span>
+              <button class="heart" type="button" aria-label="Quitar Marruecos de favoritos">♥</button>
+            </div>
+            <div class="fav-body">
+              <h3>Marruecos</h3>
+              <p class="fav-meta">Rabat · África</p>
+              <div class="fav-actions">
+                <a href="../explorar/explorar.html" class="dest-link">Ver detalle →</a>
+                <button class="btn btn-ghost btn-xs" type="button">Quitar</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Llamado a la acción: planificar con los favoritos -->
+        <div class="cta-box">
+          <div>
+            <h2>¿Listo para planificar?</h2>
+            <p>Convierte tus favoritos en un itinerario día por día.</p>
+          </div>
+          <a href="#" class="btn btn-primary btn-lg">Crear itinerario</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/img/icon1.png" alt="Nexora" class="footer-logo">
+          <p>Planifica tu viaje con claridad, desde la primera idea hasta el regreso.</p>
+        </div>
+
+        <div>
+          <h4>Producto</h4>
+          <ul>
+            <li><a href="../explorar/explorar.html">Explorar destinos</a></li>
+            <li><a href="favoritos.html">Favoritos</a></li>
+            <li><a href="#">Itinerario</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="/login/nosotros.html">Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Términos y privacidad</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Fuentes de datos</h4>
+          <ul>
+            <li><a href="#">Datos del clima</a></li>
+            <li><a href="#">Catálogo de destinos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexora. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

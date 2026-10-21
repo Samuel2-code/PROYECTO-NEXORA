@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <title>Formulario de planificación | Nexora</title>
+
+  <!-- Tipografías del documento -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="../inicio/inicio.html" class="logo">
+        <img src="/img/icon1.png" alt="Nexora - Planifica tu viaje">
+      </a>
+
+      <nav class="nav-main" aria-label="Navegación principal">
+        <a href="/inicio/inicio.html">Inicio</a>
+        <a href="/inicio/explorar.html">Explorar destinos</a>
+        <a href="/inicio/favoritos.html">Favoritos</a>
+        <a href="/inicio/itinerario.html">Itinerario</a>
+        <a href="/inicio/formulario.html" class="active">Formulario de planificación</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="/login/login.html" class="btn btn-outline btn-sm">Iniciar sesión</a>
+      </div>
+
+      <!-- Menú móvil (sin JavaScript) -->
+      <details class="mobile-menu">
+        <summary>Menú</summary>
+        <nav aria-label="Menú móvil">
+          <a href="/inicio/inicio.html">Inicio</a>
+          <a href="/inicio/explorar.html">Explorar destinos</a>
+          <a href="/inicio/favoritos.html">Favoritos</a>
+          <a href="/inicio/itinerario.html">Itinerario</a>
+          <a href="/inicio/formulario.html" class="active">Formulario de planificación</a>
+          <a href="/login/login.html">Iniciar sesión</a>
+        </nav>
+      </details>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==================== ENCABEZADO ==================== -->
+    <section class="page-head">
+      <div class="container">
+        <span class="eyebrow">Planificador</span>
+        <h1>Cuéntanos tu viaje</h1>
+        <p class="lead">Completa estos datos en menos de un minuto. Los campos con <span class="req">*</span> son obligatorios; el resto es opcional.</p>
+      </div>
+    </section>
+
+    <!-- ==================== FORMULARIO + AYUDA ==================== -->
+    <section class="section">
+      <div class="container layout">
+
+        <form class="form-card" action="../itinerario/itinerario.html" method="get">
+
+          <!-- Paso 1 -->
+          <fieldset class="step">
+            <legend class="step-head">
+              <span class="step-num">1</span>
+              <span>
+                <strong>¿A dónde vas?</strong>
+                <small>Ponle un nombre a tu viaje y elige el destino.</small>
+              </span>
+            </legend>
+
+            <div class="field">
+              <label for="nombre">Nombre del viaje <span class="req">*</span></label>
+              <input class="input" type="text" id="nombre" name="nombre"
+                placeholder="Ej: Vacaciones en la costa" required>
+              <span class="field-error">Escribe un nombre para tu viaje.</span>
+            </div>
+
+            <div class="field">
+              <label for="destino">Destino <span class="req">*</span></label>
+              <input class="input" type="text" id="destino" name="destino"
+                placeholder="Ej: Cartagena, Colombia" required>
+              <span class="field-error">Indica a dónde quieres ir.</span>
+            </div>
+          </fieldset>
+
+          <!-- Paso 2 -->
+          <fieldset class="step">
+            <legend class="step-head">
+              <span class="step-num">2</span>
+              <span>
+                <strong>¿Cuándo viajas?</strong>
+                <small>La fecha de regreso debe ser después de la de salida.</small>
+              </span>
+            </legend>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="inicio">Fecha de salida <span class="req">*</span></label>
+                <input class="input" type="date" id="inicio" name="inicio" required>
+                <span class="field-error">Elige la fecha de salida.</span>
+              </div>
+
+              <div class="field">
+                <label for="fin">Fecha de regreso <span class="req">*</span></label>
+                <input class="input" type="date" id="fin" name="fin" required>
+                <span class="field-error">Elige la fecha de regreso.</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Paso 3 -->
+          <fieldset class="step">
+            <legend class="step-head">
+              <span class="step-num">3</span>
+              <span>
+                <strong>¿Cómo quieres viajar?</strong>
+                <small>Así ajustamos las actividades a tu plan.</small>
+              </span>
+            </legend>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="viajeros">Viajeros <span class="req">*</span></label>
+                <input class="input" type="number" id="viajeros" name="viajeros"
+                  min="1" max="20" value="2" required>
+                <span class="field-error">Indica entre 1 y 20 personas.</span>
+              </div>
+
+              <div class="field">
+                <label for="presupuesto">Presupuesto</label>
+                <select class="input" id="presupuesto" name="presupuesto">
+                  <option value="economico">Económico</option>
+                  <option value="moderado" selected>Moderado</option>
+                  <option value="premium">Premium</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="label-text">¿Qué te gusta hacer? <small>(elige los que quieras)</small></span>
+              <div class="chips">
+                <input type="checkbox" id="i-playa" name="intereses" value="playa" class="chip-input">
+                <label for="i-playa" class="chip">🏖️ Playa</label>
+
+                <input type="checkbox" id="i-cultura" name="intereses" value="cultura" class="chip-input">
+                <label for="i-cultura" class="chip">🏛️ Cultura</label>
+
+                <input type="checkbox" id="i-comida" name="intereses" value="comida" class="chip-input">
+                <label for="i-comida" class="chip">🍽️ Gastronomía</label>
+
+                <input type="checkbox" id="i-aventura" name="intereses" value="aventura" class="chip-input">
+                <label for="i-aventura" class="chip">🧗 Aventura</label>
+
+                <input type="checkbox" id="i-compras" name="intereses" value="compras" class="chip-input">
+                <label for="i-compras" class="chip">🛍️ Compras</label>
+
+                <input type="checkbox" id="i-naturaleza" name="intereses" value="naturaleza" class="chip-input">
+                <label for="i-naturaleza" class="chip">🌿 Naturaleza</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="notas">Comentarios <small>(opcional)</small></label>
+              <textarea class="input" id="notas" name="notas" rows="3"
+                placeholder="Ej: Viajamos con un niño de 5 años y necesitamos hoteles con piscina."></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Acciones -->
+          <div class="form-actions">
+            <a href="../inicio/inicio.html" class="btn btn-ghost">Cancelar</a>
+            <button type="submit" class="btn btn-primary btn-lg">Crear itinerario →</button>
+          </div>
+
+        </form>
+
+        <!-- Columna de ayuda: explica el proceso sin leer mucho -->
+        <aside class="help">
+          <div class="help-card">
+            <h2>¿Qué pasa después?</h2>
+            <ol class="help-steps">
+              <li>
+                <span class="help-num ic-coral">1</span>
+                <div>
+                  <strong>Completas los datos</strong>
+                  <p>Solo tomas 1 minuto.</p>
+                </div>
+              </li>
+              <li>
+                <span class="help-num ic-teal">2</span>
+                <div>
+                  <strong>Armamos tu itinerario</strong>
+                  <p>Con actividades, clima y horarios.</p>
+                </div>
+              </li>
+              <li>
+                <span class="help-num ic-gold">3</span>
+                <div>
+                  <strong>Lo ajustas a tu gusto</strong>
+                  <p>Cambias, agregas o quitas actividades.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="tip-card">
+            <strong>💡 Consejo</strong>
+            <p>Si no sabes la fecha exacta, pon una aproximada. Puedes cambiarla después desde <em>Mi itinerario</em>.</p>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/img/icon1.png" alt="Nexora" class="footer-logo">
+          <p>Planifica tu viaje con claridad, desde la primera idea hasta el regreso.</p>
+        </div>
+
+        <div>
+          <h4>Producto</h4>
+          <ul>
+            <li><a href="../explorar/explorar.html">Explorar destinos</a></li>
+            <li><a href="../favoritos/favoritos.html">Favoritos</a></li>
+            <li><a href="../itinerario/itinerario.html">Itinerario</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="/login/nosotros.html">Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Términos y privacidad</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Fuentes de datos</h4>
+          <ul>
+            <li><a href="#">Datos del clima</a></li>
+            <li><a href="#">Catálogo de destinos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexora. Todos los derechos reservados.</p>
+        
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

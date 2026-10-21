@@ -1,0 +1,238 @@
+/* ==========================================================================
+   VIDEO HERO · Inicio
+   Todos los selectores van dentro de .video-wrap para no chocar con inicio.css
+   ========================================================================== */
+
+.video-wrap {
+  /* Colores tomados de la paleta del documento */
+  --accent: var(--dorado, #FFB238);
+  --dark: var(--navy, #1B2340);
+
+  position: relative;
+  width: 100%;
+  height: min(88vh, 740px);
+  min-height: 520px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #2B3D6E, #1B2340); 
+  color: #FFFFFF;
+}
+
+/* Video de fondo que cubre todo el bloque */
+.video-wrap video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Capa oscura para que el texto se lea bien */
+.video-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(27, 35, 64, 0.7), rgba(27, 35, 64, 0.35) 55%, rgba(27, 35, 64, 0.6));
+  pointer-events: none;
+}
+
+/* Contenido centrado sobre el video */
+.video-wrap .hero-text {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 6%;
+}
+
+/* Etiqueta superior */
+.video-wrap .eyebrow {
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 0;
+  background: none;
+  border-radius: 0;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0;
+  animation: vid-up 0.8s 0.2s forwards;
+}
+
+/* Titulares que rotan: se superponen y aparecen uno a la vez */
+.video-wrap .phrases {
+  position: relative;
+  width: 100%;
+  height: clamp(6rem, 16vw, 11rem);
+  margin: 14px 0 10px;
+}
+
+.video-wrap .phrases h1 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 5.6vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  animation: vid-phrase 12s infinite;
+}
+
+.video-wrap .phrases h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.video-wrap .phrases h1:nth-child(2) { animation-delay: 4s; }
+.video-wrap .phrases h1:nth-child(3) { animation-delay: 8s; }
+
+/* Subtítulo */
+.video-wrap .sub {
+  max-width: 620px;
+  font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+  opacity: 0;
+  animation: vid-up 0.8s 0.6s forwards;
+}
+
+/* Botones */
+.video-wrap .cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+  opacity: 0;
+  animation: vid-up 0.8s 1s forwards;
+}
+
+.video-wrap .btn {
+  display: inline-block;
+  padding: 14px 30px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #FFFFFF;
+  background: var(--coral, #FF5A4E);
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(255, 90, 78, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.video-wrap .btn:hover {
+  background: var(--coral-dark, #E8473B);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(255, 90, 78, 0.4);
+}
+
+.video-wrap .btn.ghost {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.video-wrap .btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Indicador de desplazamiento */
+.video-wrap .scroll {
+  position: absolute;
+  z-index: 2;
+  bottom: 24px;
+  left: 50%;
+  width: 26px;
+  height: 42px;
+  transform: translateX(-50%);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+}
+
+.video-wrap .scroll::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  animation: vid-dot 1.8s infinite;
+}
+
+/* Animaciones */
+@keyframes vid-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Cada frase: entra, se mantiene y sale (ciclo de 12 s, 4 s por frase) */
+@keyframes vid-phrase {
+  0%       { opacity: 0; transform: translateY(30px); filter: blur(6px); }
+  5%, 28%  { opacity: 1; transform: none; filter: none; }
+  33%,100% { opacity: 0; transform: translateY(-30px); filter: blur(6px); }
+}
+
+@keyframes vid-dot {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+
+/* Celulares */
+@media (max-width: 560px) {
+  .video-wrap {
+    min-height: 560px;
+  }
+
+  .video-wrap .cta .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Quien prefiere menos movimiento: imagen fija con el primer titular */
+@media (prefers-reduced-motion: reduce) {
+  .video-wrap video {
+    display: none;
+  }
+
+  .video-wrap *,
+  .video-wrap *::before,
+  .video-wrap *::after {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  .video-wrap .phrases h1:not(:first-child),
+  .video-wrap .scroll {
+    display: none;
+  }
+  /* Conserva los espacios entre palabras y la parte en cursiva */
+/* Titulares en bloque normal: así se conservan los espacios */
+.video-wrap .phrases {
+  --frase-alto: clamp(7rem, 18vw, 12rem);
+  height: var(--frase-alto);
+}
+
+
+}
+
+

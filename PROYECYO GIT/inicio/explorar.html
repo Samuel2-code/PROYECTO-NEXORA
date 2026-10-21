@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <title>Explorar destinos | Nexora</title>
+
+  <!-- Tipografías del documento -->
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="explorar.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+
+      <a href="/img/NEXORA.png" class="logo">
+        <img src="/img/icon1.png" alt="Nexora - Planifica tu viaje">
+      </a>
+
+      <nav class="nav-main" aria-label="Navegación principal">
+        <a href="/inicio/inicio.html">Inicio</a>
+        <a href="/inicio/explorar.html" class="active">Explorar destinos</a>
+        <a href="/inicio/favoritos.html">Favoritos</a>
+        <a href="/inicio/itinerario.html">Itinerario</a>
+        <a href="/inicio/formulario.html">Formulario de Planificación</a>
+        
+      </nav>
+
+      <div class="nav-actions">
+        <a href="/login/login.html" class="btn btn-outline btn-sm">Iniciar sesión</a>
+        <a href="#" class="btn btn-primary btn-sm">Crear itinerario</a>
+      </div>
+
+      <!-- Menú móvil (sin JavaScript) -->
+      <details class="mobile-menu">
+        <summary>Menú</summary>
+        <nav aria-label="Menú móvil">
+          <a href="/inicio/inicio.html">Inicio</a>
+          <a href="/inicio/explorar.html">Explorar destinos</a>
+          <a href="/inicio/favoritos.html">Favoritos</a>
+          <a href="#">Itinerario</a>
+          <a href="#">Formulario de Planificación</a>
+        
+          <a href="/login/login.html">Iniciar sesión</a>
+        </nav>
+      </details>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==================== ENCABEZADO, BÚSQUEDA Y FILTROS ==================== -->
+    <section class="page-head">
+      <div class="container">
+
+        <span class="eyebrow">Explorar</span>
+        <h1>Explorar destinos</h1>
+        <p class="lead">Encuentra el lugar ideal para tu próximo viaje.</p>
+
+        <!-- Barra de búsqueda -->
+        <form class="search" action="#" method="get" role="search">
+          <label for="buscar" class="sr-only">Buscar destino</label>
+          <input
+            class="input"
+            type="search"
+            id="buscar"
+            name="q"
+            placeholder="Buscar país, ciudad o región"
+            required>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+          <span class="field-error">Escribe un destino para buscar.</span>
+        </form>
+
+        <!-- Filtros por región (radio buttons: funcionan sin JavaScript) -->
+        <fieldset class="filters">
+          <legend class="sr-only">Filtrar por región</legend>
+
+          <input type="radio" name="region" id="f-todos" class="chip-input" checked>
+          <label for="f-todos" class="chip">Todos</label>
+
+          <input type="radio" name="region" id="f-africa" class="chip-input">
+          <label for="f-africa" class="chip">África</label>
+
+          <input type="radio" name="region" id="f-america" class="chip-input">
+          <label for="f-america" class="chip">América</label>
+
+          <input type="radio" name="region" id="f-asia" class="chip-input">
+          <label for="f-asia" class="chip">Asia</label>
+
+          <input type="radio" name="region" id="f-europa" class="chip-input">
+          <label for="f-europa" class="chip">Europa</label>
+
+          <input type="radio" name="region" id="f-oceania" class="chip-input">
+          <label for="f-oceania" class="chip">Oceanía</label>
+        </fieldset>
+
+      </div>
+    </section>
+
+    <!-- ==================== RESULTADOS ==================== -->
+    <section class="section">
+      <div class="container">
+
+        <p class="results-count">6 destinos disponibles</p>
+
+        <div class="dest-grid">
+
+          <!-- Tarjeta: franja de color por destino, bandera, datos y favorito -->
+          <article class="dest-card" style="--stripe: var(--coral);">
+            <button class="fav-btn" type="button" aria-label="Agregar Colombia a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇨🇴</span>
+            <div class="dest-body">
+              <h3>Colombia</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Bogotá</li>
+                <li><span>Región</span> América</li>
+                <li><span>Población</span> ~52 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+          <article class="dest-card" style="--stripe: var(--teal);">
+            <button class="fav-btn" type="button" aria-label="Agregar Japón a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇯🇵</span>
+            <div class="dest-body">
+              <h3>Japón</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Tokio</li>
+                <li><span>Región</span> Asia</li>
+                <li><span>Población</span> ~124 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+          <article class="dest-card" style="--stripe: var(--dorado);">
+            <button class="fav-btn" type="button" aria-label="Agregar Italia a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇮🇹</span>
+            <div class="dest-body">
+              <h3>Italia</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Roma</li>
+                <li><span>Región</span> Europa</li>
+                <li><span>Población</span> ~59 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+          <article class="dest-card" style="--stripe: var(--navy);">
+            <button class="fav-btn" type="button" aria-label="Agregar Perú a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇵🇪</span>
+            <div class="dest-body">
+              <h3>Perú</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Lima</li>
+                <li><span>Región</span> América</li>
+                <li><span>Población</span> ~34 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+          <article class="dest-card" style="--stripe: var(--coral);">
+            <button class="fav-btn" type="button" aria-label="Agregar Marruecos a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇲🇦</span>
+            <div class="dest-body">
+              <h3>Marruecos</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Rabat</li>
+                <li><span>Región</span> África</li>
+                <li><span>Población</span> ~37 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+          <article class="dest-card" style="--stripe: var(--teal);">
+            <button class="fav-btn" type="button" aria-label="Agregar Australia a favoritos">♥</button>
+            <span class="dest-flag" aria-hidden="true">🇦🇺</span>
+            <div class="dest-body">
+              <h3>Australia</h3>
+              <ul class="dest-meta">
+                <li><span>Capital</span> Canberra</li>
+                <li><span>Región</span> Oceanía</li>
+                <li><span>Población</span> ~27 M</li>
+              </ul>
+              <a href="#" class="dest-link">Ver detalle →</a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Paginación (indicador visual del boceto) -->
+        <nav class="pager" aria-label="Páginas de resultados">
+          <button class="dot active" type="button" aria-label="Página 1"></button>
+          <button class="dot" type="button" aria-label="Página 2"></button>
+          <button class="dot" type="button" aria-label="Página 3"></button>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/img/icon1.png" alt="Nexora" class="footer-logo">
+          <p>Planifica tu viaje con claridad, desde la primera idea hasta el regreso.</p>
+        </div>
+
+        <div>
+          <h4>Producto</h4>
+          <ul>
+            <li><a href="/explorar/explorar.html">Explorar destinos</a></li>
+            <li><a href="#">Favoritos</a></li>
+            <li><a href="#">Itinerario</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Compañía</h4>
+          <ul>
+            <li><a href="/login/nosotros.html">Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+            <li><a href="#">Términos y privacidad</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Fuentes de datos</h4>
+          <ul>
+            <li><a href="#">Datos del clima</a></li>
+            <li><a href="#">Catálogo de destinos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexora. Todos los derechos reservados.</p>
+        
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

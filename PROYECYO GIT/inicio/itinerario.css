@@ -1,0 +1,778 @@
+/* ==========================================================================
+   1. VARIABLES: paleta y tipografía del documento de diseño
+   ========================================================================== */
+:root {
+  --coral: #FF5A4E;
+  --coral-dark: #E8473B;
+  --teal: #0F8B8D;
+  --dorado: #FFB238;
+  --navy: #1B2340;
+  --papel: #FFF8F0;
+  --blanco: #FFFFFF;
+  --linea: #EDE3D6;
+  --muted: #5A6178;
+
+  --font-display: "Bricolage Grotesque", "Segoe UI", sans-serif;
+  --font-body: "Plus Jakarta Sans", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --radius-card: 18px;
+  --shadow-soft: 0 8px 24px rgba(27, 35, 64, 0.07);
+  --shadow-lg: 0 20px 48px rgba(27, 35, 64, 0.18);
+
+  /* Duración del ciclo completo del carrusel (4 días × 4 s) */
+  --ciclo: 16s;
+}
+
+/* ==========================================================================
+   2. RESET Y BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--navy);
+  background: var(--papel);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ol {
+  list-style: none;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 1.4rem + 2.6vw, 2.95rem); }
+h2 { font-size: clamp(1.4rem, 1.2rem + 0.9vw, 1.75rem); }
+h3 { font-size: clamp(1.05rem, 1rem + 0.2vw, 1.2rem); }
+h4 { font-size: 1rem; }
+
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   3. BOTONES
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(15, 139, 141, 0.45);
+  outline-offset: 3px;
+}
+
+.btn-primary {
+  background: var(--coral);
+  color: var(--blanco);
+  box-shadow: 0 8px 18px rgba(255, 90, 78, 0.28);
+}
+
+.btn-primary:hover {
+  background: var(--coral-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255, 90, 78, 0.36);
+}
+
+.btn-outline {
+  background: var(--blanco);
+  color: var(--navy);
+  border-color: var(--navy);
+}
+
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--blanco);
+}
+
+.btn-sm {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   4. NAVBAR
+   ========================================================================== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 248, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--linea);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 74px;
+}
+
+.logo img {
+  height: 44px;
+  width: auto;
+}
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-main a {
+  position: relative;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--navy);
+  transition: color 0.2s ease;
+}
+
+.nav-main a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-main a:hover,
+.nav-main a.active {
+  color: var(--teal);
+}
+
+.nav-main a:hover::after,
+.nav-main a.active::after {
+  transform: scaleX(1);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Menú móvil: oculto en escritorio */
+.mobile-menu {
+  display: none;
+  position: relative;
+}
+
+.mobile-menu summary {
+  list-style: none;
+  padding: 0.55rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy);
+  border: 1.5px solid var(--navy);
+  border-radius: 999px;
+  cursor: pointer;
+  background: var(--blanco);
+}
+
+.mobile-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.mobile-menu nav {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.6rem);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 220px;
+  padding: 0.6rem;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.mobile-menu nav a {
+  padding: 0.7rem 0.8rem;
+  font-weight: 600;
+  color: var(--navy);
+  border-radius: 10px;
+}
+
+.mobile-menu nav a:hover,
+.mobile-menu nav a.active {
+  background: var(--papel);
+  color: var(--teal);
+}
+
+/* ==========================================================================
+   5. ENCABEZADO
+   ========================================================================== */
+.page-head {
+  padding: 3.5rem 0 2.5rem;
+}
+
+.head-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  background: rgba(15, 139, 141, 0.1);
+  border-radius: 999px;
+}
+
+.page-head h1 {
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  max-width: 46ch;
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   6. PLANIFICADOR: una sola columna centrada
+   ========================================================================== */
+.section {
+  width: 100%;
+  padding: 0 0 4.5rem;
+  overflow: hidden;
+}
+
+/* Todo se apila y se centra; nada supera 760px de ancho */
+.planner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.planner > * {
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+}
+
+/* ---------- Tarjeta del viaje ---------- */
+.trip-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 2rem 1.75rem;
+  text-align: center;
+  color: var(--blanco);
+  background: var(--navy);
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Círculo decorativo */
+.trip-card::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 178, 56, 0.18);
+}
+
+.trip-card > * {
+  position: relative;
+}
+
+.trip-flag {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 2.8rem;
+}
+
+.trip-card h2 {
+  margin-bottom: 0.3rem;
+  color: var(--blanco);
+}
+
+.trip-dates {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.trip-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  max-width: 440px;
+  margin: 0 auto 1.6rem;
+}
+
+.trip-stats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.trip-stats strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--dorado);
+}
+
+.trip-card .btn-outline {
+  color: var(--blanco);
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.trip-card .btn-outline:hover {
+  background: var(--blanco);
+  color: var(--navy);
+  border-color: var(--blanco);
+}
+
+/* ==========================================================================
+   7. CARRUSEL AUTOMÁTICO (solo CSS)
+   ========================================================================== */
+.planner-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ventana: recorta la pista y solo deja ver un día */
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Pista: 4 días en fila (el 4.º es copia del 1.º).
+   Ocupa 400% de la ventana; cada paso desplaza 25% de la pista = 1 día */
+.carousel-track {
+  display: flex;
+  width: 400%;
+  animation: deslizar var(--ciclo) infinite;
+}
+
+.day-slide {
+  flex: 0 0 25%;
+  min-width: 0;
+  padding: 2rem;
+  background: var(--blanco);
+}
+
+/* Cada día se queda quieto y luego se desliza al siguiente */
+@keyframes deslizar {
+  0%, 22%  { transform: translateX(0); }
+  25%, 47% { transform: translateX(-25%); }
+  50%, 72% { transform: translateX(-50%); }
+  75%, 97% { transform: translateX(-75%); }
+  100%     { transform: translateX(0); }
+}
+
+/* Encabezado de cada día */
+.day-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--linea);
+}
+
+.day-label {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.day-date {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--teal);
+  background: rgba(15, 139, 141, 0.1);
+  border-radius: 999px;
+}
+
+/* ==========================================================================
+   8. LÍNEA DE TIEMPO DE ACTIVIDADES
+   Columnas: hora | punto | contenido
+   ========================================================================== */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Línea vertical que une los puntos (centrada en la columna del punto) */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: calc(3.2rem + 0.75rem + 0.75rem - 1px);
+  top: 1rem;
+  bottom: 1rem;
+  width: 2px;
+  background: var(--linea);
+}
+
+.act {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.2rem 1.5rem 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem 0.9rem 0;
+  border-radius: 16px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.act:hover {
+  transform: translateX(4px);
+  background: var(--papel);
+}
+
+/* Hora */
+.act time {
+  grid-column: 1;
+  grid-row: 1;
+  padding-top: 0.1rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+/* Punto de color por actividad */
+.act::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.3rem;
+  border-radius: 50%;
+  background: var(--color);
+  border: 3px solid var(--blanco);
+  box-shadow: 0 0 0 2px var(--color);
+  z-index: 1;
+}
+
+/* Texto de la actividad */
+.act > div {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.act-coral  { --color: var(--coral); }
+.act-teal   { --color: var(--teal); }
+.act-dorado { --color: var(--dorado); }
+.act-navy   { --color: var(--navy); }
+
+.act h4 {
+  margin-bottom: 0.15rem;
+}
+
+.act p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Botón para agregar actividad */
+.add-act {
+  width: 100%;
+  padding: 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy);
+  background: var(--papel);
+  border: 1.5px dashed var(--navy);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-style 0.2s ease;
+}
+
+.add-act:hover {
+  background: var(--navy);
+  color: var(--blanco);
+  border-style: solid;
+}
+
+/* ==========================================================================
+   9. INDICADORES (puntos que acompañan el carrusel)
+   Cada punto se ilumina durante su día. Mismo ciclo que la pista.
+   ========================================================================== */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--linea);
+  animation-duration: var(--ciclo);
+  animation-iteration-count: infinite;
+}
+
+.dot-1 { animation-name: punto-1; }
+.dot-2 { animation-name: punto-2; }
+.dot-3 { animation-name: punto-3; }
+
+/* Día 1 (y su copia al final) */
+@keyframes punto-1 {
+  0%, 22%   { background: var(--coral); }
+  25%, 72%  { background: var(--linea); }
+  75%, 100% { background: var(--coral); }
+}
+
+/* Día 2 */
+@keyframes punto-2 {
+  0%, 24%   { background: var(--linea); }
+  25%, 47%  { background: var(--coral); }
+  50%, 100% { background: var(--linea); }
+}
+
+/* Día 3 */
+@keyframes punto-3 {
+  0%, 49%   { background: var(--linea); }
+  50%, 72%  { background: var(--coral); }
+  75%, 100% { background: var(--linea); }
+}
+
+/* Pausa al pasar el cursor sobre el carrusel */
+.planner-main:hover .carousel-track,
+.planner-main:hover .dot {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+.footer {
+  padding: 3.5rem 0 0;
+  background: var(--blanco);
+  border-top: 1px solid var(--linea);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  max-width: 30ch;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.footer h4 {
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer li + li {
+  margin-top: 0.55rem;
+}
+
+.footer ul a {
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.footer ul a:hover {
+  color: var(--teal);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--linea);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   11. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .nav-main,
+  .nav-actions {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+
+  .nav-inner {
+    height: 66px;
+  }
+
+  .logo img {
+    height: 36px;
+  }
+
+  .page-head {
+    padding: 2.5rem 0 1.75rem;
+  }
+
+  .trip-card {
+    padding: 1.6rem 1.25rem 1.4rem;
+  }
+
+  .trip-stats {
+    gap: 0.5rem;
+  }
+
+  .day-slide {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .timeline::before {
+    left: calc(2.6rem + 0.6rem + 0.6rem - 1px);
+  }
+
+  .act {
+    grid-template-columns: 2.6rem 1.2rem 1fr;
+    gap: 0.6rem;
+    padding-right: 0.4rem;
+  }
+
+  .act time {
+    font-size: 0.85rem;
+  }
+
+  .act::before {
+    width: 12px;
+    height: 12px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+}
+
+/* Quien prefiere menos movimiento ve el Día 1 fijo, sin animaciones */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .dot-1 {
+    background: var(--coral);
+  }
+}
